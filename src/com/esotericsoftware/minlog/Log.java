@@ -16,7 +16,7 @@ public class Log {
 	static public final int LEVEL_ERROR = 5;
 	/** Important warnings. The application will continue to work correctly. */
 	static public final int LEVEL_WARN = 4;
-	/** Informative messages. This level should only log messages that are generally always somewhat useful to see. */
+	/** Informative messages. Typically used for deployment. */
 	static public final int LEVEL_INFO = 3;
 	/** Debug messages. This level is useful during development. */
 	static public final int LEVEL_DEBUG = 2;
