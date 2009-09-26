@@ -24,32 +24,33 @@ public class Log {
 	static public final int LEVEL_TRACE = 1;
 
 	/**
-	 * The level of messages that will be logged. Compiling as "final" will cause the compiler to remove all "if (Log.info) ..."
-	 * type statements below the set level.
+	 * The level of messages that will be logged. Compiling this and the booleans below as "final" will cause the compiler to
+	 * remove all "if (Log.info) ..." type statements below the set level.
 	 */
-	static private final int level = LEVEL_TRACE;
+	static private int level = LEVEL_TRACE;
 
 	/** True when the ERROR level will be logged. */
-	static public final boolean ERROR = level <= LEVEL_ERROR;
+	static public boolean ERROR = level <= LEVEL_ERROR;
 	/** True when the WARN level will be logged. */
-	static public final boolean WARN = level <= LEVEL_WARN;
+	static public boolean WARN = level <= LEVEL_WARN;
 	/** True when the INFO level will be logged. */
-	static public final boolean INFO = level <= LEVEL_INFO;
+	static public boolean INFO = level <= LEVEL_INFO;
 	/** True when the DEBUG level will be logged. */
-	static public final boolean DEBUG = level <= LEVEL_DEBUG;
+	static public boolean DEBUG = level <= LEVEL_DEBUG;
 	/** True when the TRACE level will be logged. */
-	static public final boolean TRACE = level <= LEVEL_TRACE;
+	static public boolean TRACE = level <= LEVEL_TRACE;
 
 	/**
 	 * Sets the level to log. If a version of this class is being used that has a final log level, this has no affect.
 	 */
 	static public void set (int level) {
-		// Log.level = level;
-		// ERROR = level <= LEVEL_ERROR;
-		// WARN = level <= LEVEL_WARN;
-		// INFO = level <= LEVEL_INFO;
-		// DEBUG = level <= LEVEL_DEBUG;
-		// TRACE = level <= LEVEL_TRACE;
+		// Comment out method contents when compiling fixed level JARs.
+		Log.level = level;
+		ERROR = level <= LEVEL_ERROR;
+		WARN = level <= LEVEL_WARN;
+		INFO = level <= LEVEL_INFO;
+		DEBUG = level <= LEVEL_DEBUG;
+		TRACE = level <= LEVEL_TRACE;
 	}
 
 	/**
@@ -200,23 +201,23 @@ public class Log {
 		}
 	}
 
-static public class MyLogger extends Logger {
-	public void log (int level, String category, String message, Throwable ex) {
-		StringBuilder builder = new StringBuilder(256);
-		builder.append(new Date());
-		builder.append(' ');
-		builder.append(level);
-		builder.append('[');
-		builder.append(category);
-		builder.append("] ");
-		builder.append(message);
-		if (ex != null) {
-			StringWriter writer = new StringWriter(256);
-			ex.printStackTrace(new PrintWriter(writer));
-			builder.append('\n');
-			builder.append(writer.toString().trim());
+	static public class MyLogger extends Logger {
+		public void log (int level, String category, String message, Throwable ex) {
+			StringBuilder builder = new StringBuilder(256);
+			builder.append(new Date());
+			builder.append(' ');
+			builder.append(level);
+			builder.append('[');
+			builder.append(category);
+			builder.append("] ");
+			builder.append(message);
+			if (ex != null) {
+				StringWriter writer = new StringWriter(256);
+				ex.printStackTrace(new PrintWriter(writer));
+				builder.append('\n');
+				builder.append(writer.toString().trim());
+			}
+			System.out.println(builder);
 		}
-		System.out.println(builder);
 	}
-}
 }
