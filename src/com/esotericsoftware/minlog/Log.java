@@ -27,7 +27,7 @@ public class Log {
 	 * The level of messages that will be logged. Compiling this and the booleans below as "final" will cause the compiler to
 	 * remove all "if (Log.info) ..." type statements below the set level.
 	 */
-	static private int level = LEVEL_TRACE;
+	static private int level = LEVEL_INFO;
 
 	/** True when the ERROR level will be logged. */
 	static public boolean ERROR = level <= LEVEL_ERROR;
@@ -56,7 +56,7 @@ public class Log {
 	/**
 	 * Sets the logger that will write the log messages.
 	 */
-	static public void set (Logger logger) {
+	static public void setLogger (Logger logger) {
 		Log.logger = logger;
 	}
 
@@ -158,10 +158,10 @@ public class Log {
 			long time = new Date().getTime() - firstLogTime;
 			long minutes = time / (1000 * 60);
 			long seconds = time / (1000) % 60;
-			if (minutes < 9) builder.append('0');
+			if (minutes <= 9) builder.append('0');
 			builder.append(minutes);
 			builder.append(':');
-			if (seconds < 9) builder.append('0');
+			if (seconds <= 9) builder.append('0');
 			builder.append(seconds);
 
 			switch (level) {
@@ -197,7 +197,14 @@ public class Log {
 				builder.append(writer.toString().trim());
 			}
 
-			System.out.println(builder);
+			print(builder.toString());
+		}
+
+		/**
+		 * Prints the message to System.out. Called by the default implementation of {@link #log(int, String, String, Throwable)}.
+		 */
+		protected void print (String message) {
+			System.out.println(message);
 		}
 	}
 }
