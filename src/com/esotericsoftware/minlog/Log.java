@@ -53,6 +53,30 @@ public class Log {
 		TRACE = level <= LEVEL_TRACE;
 	}
 
+	static public void NONE () {
+		set(LEVEL_NONE);
+	}
+
+	static public void ERROR () {
+		set(LEVEL_ERROR);
+	}
+
+	static public void WARN () {
+		set(LEVEL_WARN);
+	}
+
+	static public void INFO () {
+		set(LEVEL_INFO);
+	}
+
+	static public void DEBUG () {
+		set(LEVEL_DEBUG);
+	}
+
+	static public void TRACE () {
+		set(LEVEL_TRACE);
+	}
+
 	/**
 	 * Sets the logger that will write the log messages.
 	 */
