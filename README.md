@@ -1,6 +1,6 @@
-## MinLog
-
 ![](https://raw.github.com/wiki/EsotericSoftware/minlog/images/logo.png)
+
+## MinLog
 
 Please use the [MinLog discussion group](http://groups.google.com/group/minlog-users) for support.
 
