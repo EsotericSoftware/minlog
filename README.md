@@ -6,7 +6,7 @@ Please use the [MinLog discussion group](http://groups.google.com/group/minlog-u
 
 ## Overview
 
-MinLog is a Java logging library. Key features:
+MinLog is a tiny Java logging library which features:
 
 - **Zero overhead** Logging statements below a given level can be automatically removed by javac at compile time. This means applications can have detailed trace and debug logging without having any impact on the finished product.
 
