@@ -10,9 +10,9 @@ MinLog is a Java logging library. Key features:
 
 - **Zero overhead** Logging statements below a given level can be automatically removed by javac at compile time. This means applications can have detailed trace and debug logging without having any impact on the finished product.
 
-- **Simple and efficient** The API is concise and the code is very efficient at runtime.
+- **Extremely lightweight** The entire project consists of a [single Java file](https://github.com/EsotericSoftware/minlog/blob/master/src/com/esotericsoftware/minlog/Log.java) with ~100 non-comment lines of code.
 
-- **Extremely lightweight** The entire project consists of a [single Java file](http://code.google.com/p/minlog/source/browse/trunk/src/com/esotericsoftware/minlog/Log.java) with ~100 non-comment lines of code.
+- **Simple and efficient** The API is concise and the code is very efficient at runtime.
 
 Also see [this](https://github.com/jdanbrown/minlog-slf4j) drop-in replacement for minlog which logs to slf4j.
 
