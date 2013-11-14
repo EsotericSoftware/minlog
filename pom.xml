@@ -1,61 +1,142 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-		http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.esotericsoftware.minlog</groupId>
-	<artifactId>minlog</artifactId>
-	<version>1.2</version>
-	<packaging>jar</packaging>
-	<name>MinLog</name>
-	<description>Minimal overhead Java logging</description>
-	<url>http://code.google.com/p/minlog/</url>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-	<licenses>
-		<license>
-			<name>New BSD License</name>
-			<url>http://www.opensource.org/licenses/bsd-license.php</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+    <groupId>com.esotericsoftware</groupId>
+    <artifactId>minlog</artifactId>
+    <version>1.3-SNAPHOT</version>
+    <packaging>jar</packaging>
 
-	<scm>
-		<url>http://minlog.googlecode.com/svn/</url>
-		<connection>scm:svn:http://minlog.googlecode.com/svn/</connection>
-	</scm>
+    <name>minlog</name>
+    <description>Minimal overhead Java logging</description>
+    <url>https://github.com/EsotericSoftware/minlog</url>
 
-	<developers>
-		<developer>
-			<id>nathan.sweet</id>
-			<name>Nathan Sweet</name>
-			<email>nathan.sweet@gmail.com</email>
-		</developer>
-	</developers>
+    <licenses>
+        <license>
+            <name>New BSD License</name>
+            <url>http://www.opensource.org/licenses/bsd-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+    <developers>
+        <developer>
+            <id>nathan.sweet</id>
+            <name>Nathan Sweet</name>
+            <email>nathan.sweet@gmail.com</email>
+        </developer>
+    </developers>
 
-	<build>
-		<!-- Set nonstandard source dir -->
-		<sourceDirectory>src</sourceDirectory>
+    <scm>
+        <url>https://github.com/EsotericSoftware/minlog</url>
+        <connection>scm:git:https://github.com/EsotericSoftware/minlog.git</connection>
+        <developerConnection>scm:git:https://github.com/EsotericSoftware/minlog.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 
-		<plugins>
-			<!-- Disable resources (project has none) -->
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.5</version>
-				<executions>
-					<execution>
-						<id>default-resources</id>
-						<phase>none</phase>
-					</execution>
-					<execution>
-						<id>default-testResources</id>
-						<phase>none</phase>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+
+    <properties>
+        <!-- If you want to build from an IDE like IDEA or Eclipse and use GnuPG version >= v2.0,
+        set the parameter to true in order to get a nice GUI dialog for entering the passphrase.
+        If you want to build from a console, set it to false or override it via -DgpgGuiPassphrase=false. -->
+        <gpgGuiPassphrase>true</gpgGuiPassphrase>
+
+        <!-- If you have multiple GnuPG signing keys on your keyring, the first one is used as the default key.
+        In order to use another one, specify the desired key ID here, otherwise you may just leave the parameter
+        empty or override it via -DgpgKeyId=. It does not hurt to always specify it, though. -->
+        <gpgKeyId>70CC1444</gpgKeyId>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.4</version>
+                <configuration>
+                    <useAgent>${gpgGuiPassphrase}</useAgent>
+                    <keyname>${gpgKeyId}</keyname>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>package-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>package-javadocs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>package-tests</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
