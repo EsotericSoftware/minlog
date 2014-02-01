@@ -9,7 +9,7 @@
 
 	<groupId>com.esotericsoftware</groupId>
 	<artifactId>minlog</artifactId>
-	<version>1.3-SNAPHOT</version>
+	<version>1.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>MinLog</name>
