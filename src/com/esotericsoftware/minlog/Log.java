@@ -3,7 +3,6 @@ package com.esotericsoftware.minlog;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Date;
 
 /**
  * A low overhead, lightweight logging system.
