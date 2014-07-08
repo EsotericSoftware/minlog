@@ -174,12 +174,12 @@ public class Log {
 	 * logging differently.
 	 */
 	static public class Logger {
-		private long firstLogTime = new Date().getTime();
+		private long firstLogTime = System.currentTimeMillis();
 
 		public void log (int level, String category, String message, Throwable ex) {
 			StringBuilder builder = new StringBuilder(256);
 
-			long time = new Date().getTime() - firstLogTime;
+			long time = System.currentTimeMillis() - firstLogTime;
 			long minutes = time / (1000 * 60);
 			long seconds = time / (1000) % 60;
 			if (minutes <= 9) builder.append('0');
