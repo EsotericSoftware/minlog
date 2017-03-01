@@ -3,7 +3,6 @@ package com.esotericsoftware.minlog;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Date;
 
 /** A low overhead, lightweight logging system.
  * @author Nathan Sweet <misc@n4te.com> */
@@ -164,12 +163,12 @@ public class Log {
 	/** Performs the actual logging. Default implementation logs to System.out. Extended and use {@link Log#logger} set to handle
 	 * logging differently. */
 	static public class Logger {
-		private long firstLogTime = new Date().getTime();
+		private long firstLogTime = System.currentTimeMillis();
 
 		public void log (int level, String category, String message, Throwable ex) {
 			StringBuilder builder = new StringBuilder(256);
 
-			long time = new Date().getTime() - firstLogTime;
+			long time = System.currentTimeMillis() - firstLogTime;
 			long minutes = time / (1000 * 60);
 			long seconds = time / (1000) % 60;
 			if (minutes <= 9) builder.append('0');
