@@ -210,12 +210,20 @@ public class Log {
 				builder.append(writer.toString().trim());
 			}
 
-			print(builder.toString());
+			String result = builder.toString();
+			if (level == LEVEL_ERROR)
+				print(result);
+			else printError(result);
 		}
 
 		/** Prints the message to System.out. Called by the default implementation of {@link #log(int, String, String, Throwable)}. */
 		protected void print (String message) {
 			System.out.println(message);
+		}
+
+		/** Prints the message to System.err. Called by the default implementation of {@link #log(int, String, String, Throwable)}. */
+		protected void printError (String message) {
+			System.err.println(message);
 		}
 	}
 }
