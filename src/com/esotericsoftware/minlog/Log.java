@@ -212,8 +212,8 @@ public class Log {
 
 			String result = builder.toString();
 			if (level == LEVEL_ERROR)
-				print(result);
-			else printError(result);
+				printError(result);
+			else print(result);
 		}
 
 		/** Prints the message to System.out. Called by the default implementation of {@link #log(int, String, String, Throwable)}. */
