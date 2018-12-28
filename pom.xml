@@ -34,8 +34,8 @@
 
 	<scm>
 		<url>https://github.com/EsotericSoftware/minlog</url>
-		<connection>scm:git:https://github.com/EsotericSoftware/minlog.git</connection>
-		<developerConnection>scm:git:https://github.com/EsotericSoftware/minlog.git</developerConnection>
+		<connection>scm:git:git@github.com:EsotericSoftware/minlog.git</connection>
+		<developerConnection>scm:git:git@github.com:EsotericSoftware/minlog.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
