@@ -35,6 +35,8 @@ public class Log {
 	/** True when the TRACE level will be logged. */
 	static public boolean TRACE = level <= LEVEL_TRACE;
 
+	static public int getLevel() { return level; }
+	
 	/** Sets the level to log. If a version of this class is being used that has a final log level, this has no affect. */
 	static public void set (int level) {
 		// Comment out method contents when compiling fixed level JARs.
